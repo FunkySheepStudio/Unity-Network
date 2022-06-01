@@ -1,0 +1,36 @@
+{
+  "name": "net.funkysheep.unity.network",
+  "displayName": "FunkySheep Unity Network Library",
+  "version": "0.1.0",
+  "unity": "2020.3",
+  "description": "FunkySheep framework Network Library",
+  "keywords": [
+    "Networking",
+    "WebSockets",
+    "NodeJS",
+    "Unity",
+    "WebGl",
+    "AR",
+    "Android",
+    "IOS"
+  ],
+  "category": "Networking",
+  "changelogUrl": "https://github.com/FunkySheepStudio/Unity-Network/blob/main/CHANGELOG.md",
+  "dependencies": {
+    "net.funkysheep.unity.simplejson": "0.1.0",
+    "net.funkysheep.unity.types": "0.1.0",
+    "net.funkysheep.unity.events": "0.1.0",
+    "net.funkysheep.unity.crypto": "0.1.0",
+    "net.funkysheep.unity.files": "0.1.0",
+    "net.funkysheep.unity.time": "0.1.0"
+  },
+  "scopedRegistries": [
+    {
+      "name": "npmjs",
+      "url": "https://registry.npmjs.org",
+      "scopes": [
+        "net.funkysheep"
+      ]
+    }
+  ]
+}

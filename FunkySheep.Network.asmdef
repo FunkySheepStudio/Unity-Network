@@ -1,0 +1,22 @@
+{
+    "name": "FunkySheep.Network",
+    "rootNamespace": "",
+    "references": [
+        "GUID:04376767bc1f3b428aefa3d20743e819",
+        "GUID:c242ce1ceb051254a9502732b4939706",
+        "GUID:8dab0731d65dec94890ae1efe17f6f85",
+        "GUID:b1211e128b1ebc149ada3347f2d73d5b",
+        "GUID:dcdebd7c207e20047a8373cce3ecbe70",
+        "GUID:aab459bd57a00c74e90415e085cc1ca7",
+        "GUID:9c3b8236af62109478c2226fd20f39cf"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
