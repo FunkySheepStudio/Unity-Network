@@ -1,7 +1,7 @@
 {
   "name": "net.funkysheep.unity.network",
   "displayName": "FunkySheep Unity Network Library",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "unity": "2020.3",
   "description": "FunkySheep framework Network Library",
   "keywords": [

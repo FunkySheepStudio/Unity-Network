@@ -70,8 +70,9 @@ namespace FunkySheep.Network
             JSONNode msgObject = JSON.Parse(strMsg);
             string msgService = msgObject["service"];
             string msgRequest = msgObject["request"];
+            string msgServiceType = msgObject["method"];
 
-            services.FindAll(service => service.apiPath == msgService)
+            services.FindAll(service => service.apiPath == msgService && service.type.ToString() == msgServiceType)
               .ForEach(service =>
               {
                   //  Raise the event
