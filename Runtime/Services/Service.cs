@@ -5,7 +5,8 @@ public enum ServiceTypes
 {
   create,
   find,
-  patch
+  patch,
+  get
 }
 
 namespace FunkySheep.Network.Services

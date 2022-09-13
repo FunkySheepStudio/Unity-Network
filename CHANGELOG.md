@@ -1,3 +1,7 @@
+## Version 0.2.0 (September 13, 2022)
+- **Features**
+  - Add Get Service
+
 ## Version 0.1.9 (August 21, 2022)
 - **Bug Fixes**
   - Add request type filter for the incoming messages
