@@ -1,3 +1,7 @@
+## Version 0.2.1 (October 02, 2022)
+- **Features**
+  - Add Texture Downloader
+
 ## Version 0.2.0 (September 13, 2022)
 - **Features**
   - Add Get Service
