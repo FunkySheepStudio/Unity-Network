@@ -34,7 +34,7 @@ namespace FunkySheep.Network
         {
             if (connection != null)
             {
-                webSocket = WebSocketFactory.CreateInstance(connection.protocol + "://" + connection.address + ":" + connection.port);
+                webSocket = WebSocketFactory.CreateInstance(connection.protocol + "://" + connection.address + ":" + connection.port + connection.path);
                 //  Binding the events
                 webSocket.OnOpen += onConnectionOpen;
                 webSocket.OnClose += onConnectionClose;
@@ -48,21 +48,9 @@ namespace FunkySheep.Network
         {
             if (onConnect != null)
             {
+
                 onConnect.Raise();
-                SendSocketId();
             }
-        }
-
-        public string SendSocketId()
-        {
-            string token = Random.Range(0, 65000).ToString();
-
-            Message message = new Message("network-ws", "Register");
-            message.body["data"]["wsKey"] = token;
-
-            message.Send();
-
-            return token;
         }
 
         private void onConnectionClose(WebSocketCloseCode code)
@@ -75,17 +63,14 @@ namespace FunkySheep.Network
 
         private void onConnectionError(string errMsg)
         {
+            Debug.Log(errMsg);
         }
 
         private void onMessage(byte[] msg)
         {
             string strMsg = Encoding.UTF8.GetString(msg);
             JSONNode msgObject = JSON.Parse(strMsg);
-            string msgService = msgObject["service"];
-            string msgFunction = msgObject["function"];
-
-            Debug.Log(msgService);
-            Debug.Log(msgFunction);
+            string msgService = msgObject["Controller"];
 
             services.FindAll(service => service.name == msgService)
               .ForEach(service =>
@@ -96,8 +81,6 @@ namespace FunkySheep.Network
                       service.onReceptionEvent.Raise(msgObject);
                   }
               });
-
-            //Debug.Log("Received message: " + strMsg + this);
         }
 
         async void OnApplicationQuit()

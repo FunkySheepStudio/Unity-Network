@@ -15,5 +15,6 @@ namespace FunkySheep.Network
         public protocol protocol;
         public string address;
         public int port;
+        public string path;
     }
 }

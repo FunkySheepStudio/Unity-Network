@@ -2,18 +2,22 @@ using ZXing;
 using ZXing.QrCode;
 using UnityEngine;
 using FunkySheep.SimpleJSON;
-using System;
 
 namespace FunkySheep.Network
 {
     [AddComponentMenu("FunkySheep/Network/QrCode")]
     public class QrCode : MonoBehaviour
     {
+        public FunkySheep.Types.String socketId;
         public void Generate(JSONNode message)
         {
-            if (message["function"] == "RegistrationOk")
+            string method = message["Method"];
+
+			if (method == "SetId")
             {
-                FunkySheep.Network.Manager manager = FunkySheep.Network.Manager.Instance;
+                socketId.value = message["ConnectionId"];
+
+				FunkySheep.Network.Manager manager = FunkySheep.Network.Manager.Instance;
                 string url = "";
                 if (manager.connection.protocol == protocol.ws)
                 {
@@ -24,9 +28,7 @@ namespace FunkySheep.Network
                 }
 
                 url += manager.connection.address + ":" + manager.connection.port;
-                url += "/?service=user-auth&token=" + message["data"]["token"];
-
-                Debug.Log(url);
+                url += "/?service=user-auth&token=" + socketId.value;
 
                 this.GetComponent<MeshRenderer>().material.SetTexture("_MainTex", generateQR(url));
             }
