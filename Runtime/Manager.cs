@@ -34,7 +34,7 @@ namespace FunkySheep.Network
         {
             if (connection != null)
             {
-                webSocket = WebSocketFactory.CreateInstance(connection.address + ":" + connection.port);
+                webSocket = WebSocketFactory.CreateInstance(connection.protocol + "://" + connection.address + ":" + connection.port);
                 //  Binding the events
                 webSocket.OnOpen += onConnectionOpen;
                 webSocket.OnClose += onConnectionClose;
@@ -49,7 +49,20 @@ namespace FunkySheep.Network
             if (onConnect != null)
             {
                 onConnect.Raise();
+                SendSocketId();
             }
+        }
+
+        public string SendSocketId()
+        {
+            string token = Random.Range(0, 65000).ToString();
+
+            Message message = new Message("network-ws", "Register");
+            message.body["data"]["wsKey"] = token;
+
+            message.Send();
+
+            return token;
         }
 
         private void onConnectionClose(WebSocketCloseCode code)
@@ -69,10 +82,12 @@ namespace FunkySheep.Network
             string strMsg = Encoding.UTF8.GetString(msg);
             JSONNode msgObject = JSON.Parse(strMsg);
             string msgService = msgObject["service"];
-            string msgRequest = msgObject["request"];
-            string msgServiceType = msgObject["method"];
+            string msgFunction = msgObject["function"];
 
-            services.FindAll(service => service.apiPath == msgService && service.type.ToString() == msgServiceType)
+            Debug.Log(msgService);
+            Debug.Log(msgFunction);
+
+            services.FindAll(service => service.name == msgService)
               .ForEach(service =>
               {
                   //  Raise the event

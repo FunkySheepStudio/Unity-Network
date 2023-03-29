@@ -6,11 +6,10 @@ namespace FunkySheep.Network
     {
         public JSONNode body = JSON.Parse("{}");
 
-        public Message(string service, string request)
+        public Message(string service, string function)
         {
             body["service"] = service;
-            body["request"] = request;
-            body["sentAt"] = Time.Now();
+            body["function"] = function;
         }
 
         public void Send()
