@@ -8,41 +8,14 @@ namespace FunkySheep.Network
     [AddComponentMenu("FunkySheep/Network/QrCode")]
     public class QrCode : MonoBehaviour
     {
-        public FunkySheep.Types.String socketId;
         public void Generate(JSONNode message)
         {
             string method = message["Method"];
 
-			if (method == "SetId")
+			if (method == "SetUrl")
             {
-                socketId.value = message["ConnectionId"];
-
-				FunkySheep.Network.Manager manager = FunkySheep.Network.Manager.Instance;
-                string url = "";
-                if (manager.connection.protocol == protocol.ws)
-                {
-                    url += "http://";
-                } else if (manager.connection.protocol == protocol.wss)
-                {
-                    url += "https://";
-                }
-
-                url += manager.connection.address + ":" + manager.connection.port;
-                url += "/?service=user-auth&token=" + socketId.value;
-
+                string url = message["Url"];
                 this.GetComponent<MeshRenderer>().material.SetTexture("_MainTex", generateQR(url));
-            }
-        }
-
-        public void GetUser(JSONNode message)
-        {
-            if (message["function"] == "GetUser")
-            {
-                PlayerPrefs.SetString("user", message["data"]["user"]);
-                PlayerPrefs.SetString("device", message["data"]["device"]);
-                PlayerPrefs.Save();
-
-                gameObject.SetActive(false);
             }
         }
 
