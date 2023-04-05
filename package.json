@@ -1,13 +1,13 @@
 {
   "name": "net.funkysheep.unity.network",
   "displayName": "FunkySheep Unity Network Library",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "unity": "2020.3",
   "description": "FunkySheep framework Network Library",
   "keywords": [
     "Networking",
     "WebSockets",
-    "NodeJS",
+    "Dotnet",
     "Unity",
     "WebGl",
     "AR",
@@ -22,6 +22,7 @@
     "net.funkysheep.unity.events": "0.1.0",
     "net.funkysheep.unity.crypto": "0.1.0",
     "net.funkysheep.unity.files": "0.1.0",
+    "net.funkysheep.unity.qrcode": "0.0.1",
     "net.funkysheep.unity.time": "0.1.0"
   },
   "scopedRegistries": [
